@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using StudentAdminPortal.API.DomainModels;
-using StudentAdminPortal.API.DataModels;
 using StudentAdminPortal.API.Repositories;
 using AutoMapper;
 
@@ -23,13 +21,12 @@ namespace StudentAdminPortal.API.Controllers
 
         [HttpGet]
         [Route("[controller]")]
-       public IActionResult GetAllStudents()
+       public async Task<IActionResult> GetAllStudents()
         {
-            List<DataModels.Student> students = _studentRepository.GetStudents();
-            var domainModelStudent =  _mapper.Map<List<DomainModels.Student>>(students);
-            return Ok(domainModelStudent);
-
-
+            List<DataModels.Student> students = await _studentRepository.GetStudentsAsync();
+            List<DomainModels.Student> studentDto = _mapper.Map<List<DomainModels.Student>>(students);
+     
+            return Ok(studentDto);
         }
     }
 }
