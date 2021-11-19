@@ -10,6 +10,13 @@ var connectionString = builder.Configuration.GetConnectionString("StudneAdminPor
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddCors((opitions) =>
+{
+    opitions.AddPolicy("angularApplication", (builder) =>
+    builder.WithOrigins("http://localhost:4200")
+    .AllowAnyHeader().WithMethods("GET", "POST", "PUT", "DELETE")
+    .WithExposedHeaders("*"));
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<StudentAdminContext>(options => options.UseSqlServer(connectionString));
@@ -25,7 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("angularApplication");
 app.UseAuthorization();
 
 app.MapControllers();
