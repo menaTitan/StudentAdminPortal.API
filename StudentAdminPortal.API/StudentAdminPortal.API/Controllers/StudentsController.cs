@@ -45,7 +45,7 @@ namespace StudentAdminPortal.API.Controllers
             if (await _studentRepository.HasStudentAsync(studentId))
             {
                 var studentDataModel = await _studentRepository.UpdateStudent(studentId, _mapper.Map<DataModels.Student>(request));
-                return  Ok(_mapper.Map<DataModels.Student>(studentDataModel));
+                return  Ok(_mapper.Map<DomainModels.Student>(studentDataModel));
             }
             else
             {

@@ -10,7 +10,7 @@
         public long Mobile { get; set; }
         public string? ProfileImageUrl { get; set; }
         public Guid GenderId { get; set; }
-        public Gender Gender { get; set; }
-        public Address Address { get; set; }
+        public Gender? Gender { get; set; }
+        public Address? Address { get; set; }
     }
 }

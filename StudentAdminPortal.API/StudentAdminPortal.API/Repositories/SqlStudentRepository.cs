@@ -33,7 +33,7 @@ namespace StudentAdminPortal.API.Repositories
 
         public async Task<Student> UpdateStudent(Guid studentId, Student request)
         {
-            var existingStudent = await _context.Student.FirstOrDefaultAsync(x => x.Id == studentId);
+            var existingStudent = await GetStudentAsync(studentId);
             if (existingStudent != null)
             {
                 existingStudent.FirstName = request.FirstName;

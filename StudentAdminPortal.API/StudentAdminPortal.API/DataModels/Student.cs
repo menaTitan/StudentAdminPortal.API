@@ -12,7 +12,7 @@
         public Guid GenderId { get; set; }
 
         //Navigation Properties 
-        public Gender Gender { get; set; }
-        public Address Address { get; set; }
+        public Gender? Gender { get; set; }
+        public Address? Address { get; set; }
     }
 }
