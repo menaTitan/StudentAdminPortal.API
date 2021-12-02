@@ -73,7 +73,7 @@ namespace StudentAdminPortal.API.Controllers
         {
             var student = _mapper.Map<DataModels.Student>(request);
             var newStudnet = await _studentRepository.AddStudnetAsync(student);
-            return Ok(_mapper.Map<DomainModels.Student>(newStudnet));
+            return CreatedAtAction(nameof(GetAllStudentsAsync), new { studentId = newStudnet.Id}, newStudnet);
 
         }
     }
