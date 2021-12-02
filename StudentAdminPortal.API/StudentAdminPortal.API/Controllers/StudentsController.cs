@@ -67,5 +67,14 @@ namespace StudentAdminPortal.API.Controllers
             }
 
         }
+        [HttpPost]
+        [Route("[controller]/Add")]
+        public async Task<IActionResult> AddStudentAsync([FromBody] AddStudentRequest request)
+        {
+            var student = _mapper.Map<DataModels.Student>(request);
+            var newStudnet = await _studentRepository.AddStudnetAsync(student);
+            return Ok(_mapper.Map<DomainModels.Student>(newStudnet));
+
+        }
     }
 }

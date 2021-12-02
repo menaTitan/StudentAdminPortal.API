@@ -11,6 +11,7 @@ namespace StudentAdminPortal.API.Utility
             CreateMap<DataModels.Address, DomainModels.Address>().ReverseMap();
             CreateMap<DataModels.Gender, DomainModels.Gender>().ReverseMap();
             CreateMap<DomainModels.UpdateStudentRequest, DataModels.Student>().AfterMap<UpdateStudentRequestAfterMap>();
+            CreateMap<DomainModels.AddStudentRequest, DataModels.Student>().AfterMap<AddStudentRequestAfterMap>();
         }
     }
 }
