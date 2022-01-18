@@ -70,7 +70,7 @@ namespace StudentAdminPortal.API.Repositories
             }
         }
 
-       public async Task<Student> AddStudnetAsync(Student request)
+       public async Task<Student> AddStudentAsync(Student request)
         {
            var student = await _context.Student.AddAsync(request);
             await _context.SaveChangesAsync();

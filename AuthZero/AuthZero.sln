@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthZero", "AuthZero\AuthZero.csproj", "{E829248F-6822-48A6-8592-18BE1D32C38A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E829248F-6822-48A6-8592-18BE1D32C38A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E829248F-6822-48A6-8592-18BE1D32C38A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E829248F-6822-48A6-8592-18BE1D32C38A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E829248F-6822-48A6-8592-18BE1D32C38A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {31C038AB-095B-4F2C-8F0A-59F43D91E5A6}
+	EndGlobalSection
+EndGlobal

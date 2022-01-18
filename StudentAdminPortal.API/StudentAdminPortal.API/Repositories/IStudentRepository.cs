@@ -10,7 +10,7 @@ namespace StudentAdminPortal.API.Repositories
         Task<bool> HasStudentAsync(Guid studentId);
         Task<Student>UpdateStudent(Guid studentId, Student request);
         Task<Student> DeleteStudentAsync(Guid studentId);
-        Task<Student> AddStudnetAsync(Student student);
+        Task<Student> AddStudentAsync(Student student);
 
     }
 }
