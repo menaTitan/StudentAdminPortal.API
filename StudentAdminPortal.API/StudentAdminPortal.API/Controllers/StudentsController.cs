@@ -10,11 +10,13 @@ namespace StudentAdminPortal.API.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentRepository _studentRepository;
+        private  readonly IImageRepositories _imageRepository;
         private readonly IMapper _mapper;
 
-        public StudentsController(IStudentRepository studentRepository, IMapper mapper)
+        public StudentsController(IStudentRepository studentRepository, IMapper mapper, IImageRepositories imageRepositories)
         {
             _studentRepository = studentRepository;
+            _imageRepository = imageRepositories;
             _mapper = mapper;
         }
 
@@ -76,5 +78,41 @@ namespace StudentAdminPortal.API.Controllers
             return CreatedAtAction(nameof(GetStudentAsync), new { studentId = student.Id}, newStudnet);
 
         }
+
+        [HttpPost]
+        [Route("[controller]/{studentId:guid}/upload-image")]
+        public async Task<IActionResult> UploadImage([FromRoute] Guid studentId, IFormFile profileImage)
+        {
+            //check if the student exist
+            if (await _studentRepository.HasStudentAsync(studentId))
+            {
+                // Upload the profile image to local storage
+                var fileName = Guid.NewGuid() + Path.GetExtension(profileImage.FileName);
+
+                var fileImageReltivePath =await _imageRepository.Upload(profileImage, fileName);
+
+                //update the profile image path in the database
+                if (await _studentRepository.UpdateProfileImageAsync(studentId, fileImageReltivePath))
+                    return StatusCode(StatusCodes.Status202Accepted, "The profile picture has been Updated.");
+
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error occurred while uploading image.");
+            }
+            return NotFound();
+        }
+
+        [HttpGet]
+        [Route("[controller]/{studentId:guid}/user-images")]
+        public async Task<IActionResult> GetUserProfileImage([FromRoute] Guid studentId)
+        {
+            //check if the student exist
+            if (await _studentRepository.HasStudentAsync(studentId))
+            {
+                var studentImagePath =  _studentRepository.GetStudentAsync(studentId).Result.ProfileImageUrl;
+                return Ok(_imageRepository.Get(studentImagePath));
+            }
+            return NotFound();
+
+        }
     }
+
 }
