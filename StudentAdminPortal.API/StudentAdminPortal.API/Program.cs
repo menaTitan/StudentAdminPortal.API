@@ -7,7 +7,7 @@ using StudentAdminPortal.API.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 //adding connection string for appsettings.json 
-var connectionString = builder.Configuration.GetConnectionString("StudneAdminPortalDb");
+var connectionString = builder.Configuration.GetConnectionString("StudentAdminPortalDb");
 // Add services to the container.
 
 builder.Services.AddControllers();
